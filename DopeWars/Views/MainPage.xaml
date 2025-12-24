@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Title="{Binding Title}"
+    x:Class="DopeWars.Views.MainPage"
+    x:DataType="vm:MainPageViewModel"
+    x:Name="TotalHomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:DopeWars.Components"
+    xmlns:models="clr-namespace:DopeWars.Models"
+    xmlns:vm="clr-namespace:DopeWars.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275" />
+            <ColumnDefinition Width="175" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid
+            ColumnDefinitions="*,*"
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            HorizontalOptions="Center"
+            RowDefinitions="150,150,50,50"
+            RowSpacing="5">
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Text="Cash"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                Text="{Binding CashAmount, StringFormat='${0}'}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Debit"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="{Binding DebitAmount, StringFormat='${0}'}"
+                VerticalTextAlignment="Center" />
+            <controls:CustomButton
+                Command="{Binding DepositCash}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Text="Add to savings" />
+            <controls:CustomButton
+                Command="{Binding WithdrawCash}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Text="Withdraw" />
+        </Grid>
+        <CollectionView
+            Grid.Column="2"
+            Grid.Row="1"
+            ItemsSource="{Binding ListOfCities}"
+            Margin="0,20,20,0">
+            <CollectionView.Header>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Select A City" />
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Cities">
+                    <Grid Padding="10" RowDefinitions="50">
+                        <controls:CustomButton
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=SelectionCommand}"
+                            CommandParameter="{Binding .}"
+                            CornerRadius="100"
+                            Grid.Row="0"
+                            Text="{Binding Name}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
