@@ -15,7 +15,6 @@ public class BaseViewModel : BindableBase, INavigationAware
     public DelegateCommand<double?> DepositCash { get; }
     public DelegateCommand<double?> WithdrawCash { get; }
 
-
     public BaseViewModel(MyData currentUser,ISemanticScreenReader screenReader,INavigationService navigationService, IPageDialogService dialogService)
     {
         CurrentUser = currentUser;
@@ -91,16 +90,10 @@ public class BaseViewModel : BindableBase, INavigationAware
 
     private void DebitPayment()
     {
-        if (DebitAmount > 0)
-        {
-            CashAmount = 0;
-            DebitAmount -= 50;
-        }
-        else
-        {
-            DebitAmount = 0;
-            CashAmount += 50;
-        }
+        bool hasDebit = DebitAmount > 0;
+
+        DebitAmount = hasDebit ? DebitAmount - 50 : 0;
+        CashAmount  = hasDebit ? 0 : CashAmount + 50;
     }
 
     public virtual void OnNavigatedFrom(INavigationParameters parameters)
