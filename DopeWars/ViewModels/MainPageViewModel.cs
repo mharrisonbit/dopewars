@@ -7,13 +7,13 @@ public class MainPageViewModel : BaseViewModel
 {
     public DelegateCommand<Cities> SelectionCommand { get; }
 
-    public MainPageViewModel(MyData currentUser,ISemanticScreenReader screenReader, INavigationService navigationService, IPageDialogService dialogService) : base(currentUser, screenReader, navigationService, dialogService)
+    public MainPageViewModel(UserData currentUser,ISemanticScreenReader screenReader, INavigationService navigationService, IPageDialogService dialogService) : base(currentUser, screenReader, navigationService, dialogService)
     {
         SelectionCommand = new DelegateCommand<Cities>(async (x) => await SelectionMade(x));
 
         Title = "Home Page";
         Task.Run(async () => await ShowBusy(LoadCityAndDrugData, "Loading data..."));
-        CashAmount = 100;
+
     }
 
 
