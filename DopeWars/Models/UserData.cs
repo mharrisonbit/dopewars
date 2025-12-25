@@ -16,6 +16,7 @@ public class UserData : IUserData
     {
         Debug.WriteLine("Making deposit");
         await Task.Delay(5000);
+        Cash = 1000;
     }
 
     public async Task MakeWithdraw(double? withdrawAmount)

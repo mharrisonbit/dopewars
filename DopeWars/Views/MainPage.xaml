@@ -9,7 +9,7 @@
     xmlns:models="clr-namespace:DopeWars.Models"
     xmlns:vm="clr-namespace:DopeWars.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <Grid>
+    <Grid Padding="30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="275" />
             <ColumnDefinition Width="175" />
@@ -19,47 +19,11 @@
             <RowDefinition Height="75" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid
-            ColumnDefinitions="*,*"
+        <controls:WalletSummaryView
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="2"
-            HorizontalOptions="Center"
-            RowDefinitions="150,150,50,50"
-            RowSpacing="5">
-            <Label
-                Grid.Column="0"
-                Grid.Row="0"
-                Text="Cash"
-                VerticalTextAlignment="Center" />
-            <Label
-                Grid.Column="1"
-                Grid.Row="0"
-                Text="{Binding CashAmount, StringFormat='${0}'}"
-                VerticalTextAlignment="Center" />
-            <Label
-                Grid.Column="0"
-                Grid.Row="1"
-                Text="Debit"
-                VerticalTextAlignment="Center" />
-            <Label
-                Grid.Column="1"
-                Grid.Row="1"
-                Text="{Binding DebitAmount, StringFormat='${0}'}"
-                VerticalTextAlignment="Center" />
-            <controls:CustomButton
-                Command="{Binding DepositCash}"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Grid.Row="2"
-                Text="Add to savings" />
-            <controls:CustomButton
-                Command="{Binding WithdrawCash}"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Grid.Row="3"
-                Text="Withdraw" />
-        </Grid>
+            Padding="0" />
         <CollectionView
             Grid.Column="2"
             Grid.Row="1"
