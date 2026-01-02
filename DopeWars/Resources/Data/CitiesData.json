@@ -1,11 +1,8 @@
-[
-  {
-    "Name":"Louisville"
-  },
-  {
-    "Name":"Lexington"
-  },
-  {
-    "Name":"Bowling Green"
-  }
-]
+{
+  "Cities":
+  [
+    "Louisville",
+    "Lexington",
+    "Bowling Green"
+  ]
+}

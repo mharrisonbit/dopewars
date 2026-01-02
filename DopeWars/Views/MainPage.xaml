@@ -11,9 +11,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Grid Padding="30">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="275" />
-            <ColumnDefinition Width="175" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="75*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -36,12 +36,11 @@
                     Text="Select A City" />
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Cities">
+                <DataTemplate x:DataType="models:City">
                     <Grid Padding="10" RowDefinitions="50">
                         <controls:CustomButton
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=SelectionCommand}"
                             CommandParameter="{Binding .}"
-                            CornerRadius="100"
                             Grid.Row="0"
                             Text="{Binding Name}" />
                     </Grid>

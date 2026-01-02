@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using DopeWars.Interfaces;
 
@@ -10,13 +11,12 @@ public class UserData : IUserData
     public string Name { get; set; }
     public double Cash{get; set;}
     public double Debit {get; set;}
-    public List<Drugs> MyStash { get; set; }
+    public ObservableCollection<Drug> MyStash { get; set; }
 
     public async Task MakeDeposit(double? depositAmount)
     {
         Debug.WriteLine("Making deposit");
         await Task.Delay(5000);
-        Cash = 1000;
     }
 
     public async Task MakeWithdraw(double? withdrawAmount)

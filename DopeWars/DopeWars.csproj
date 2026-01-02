@@ -49,9 +49,10 @@
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
         <!-- the Data for the app to run properly-->
-      <MauiAsset Include="Resources\Data\CitiesData.json" LogicalName="Data/CitiesData.json"/>
-
-      <MauiAsset Include="Resources\Data\DrugsData.json" LogicalName="Data/DrugsData.json"/>
+        <MauiAsset Include="Resources\Data\CitiesData.json" LogicalName="Data/CitiesData.json"/>
+  
+        <MauiAsset Include="Resources\Data\DrugsData.json" LogicalName="Data/DrugsData.json"/>
+      <MauiAsset Include="Resources\Data\GameSetupData.json" LogicalName="Data/GameSetupData.json"/>
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>

@@ -1,0 +1,51 @@
+{
+  "Cities": [
+    {
+      "id": 1,
+      "name": "Louisville"
+    },
+    {
+      "id": 2,
+      "name": "Lexington"
+    },
+    {
+      "id": 3,
+      "name": "Bowling Green"
+    }
+  ],
+  "Drugs": [
+    {
+      "name": "Pot",
+      "priceRange": [
+        100,
+        200,
+        300
+      ]
+    },
+    {
+      "name": "Cocaine",
+      "priceRange": [
+        500,
+        600,
+        700
+      ]
+    },
+    {
+      "name": "Meth",
+      "priceRange": [
+        50,
+        60,
+        70
+      ]
+    },
+    {
+      "name": "Xanax",
+      "priceRange": [
+        30,
+        40,
+        50
+      ]
+    }
+  ]
+}
+

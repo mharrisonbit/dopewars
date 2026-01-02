@@ -1,42 +1,43 @@
 ﻿using System.Diagnostics;
 using DopeWars.Models;
+using DopeWars.Views;
 
 namespace DopeWars.ViewModels;
 
 public class MainPageViewModel : BaseViewModel
 {
-    public DelegateCommand<Cities> SelectionCommand { get; }
+    public DelegateCommand<City> SelectionCommand { get; }
 
     public MainPageViewModel(UserData currentUser,ISemanticScreenReader screenReader, INavigationService navigationService, IPageDialogService dialogService) : base(currentUser, screenReader, navigationService, dialogService)
     {
-        SelectionCommand = new DelegateCommand<Cities>(async (x) => await SelectionMade(x));
+        SelectionCommand = new DelegateCommand<City>(async (x) => await SelectionMade(x));
 
         Title = "Home Page";
         Task.Run(async () => await ShowBusy(LoadCityAndDrugData, "Loading data..."));
-
     }
 
-
-    private async Task<bool> LoadCityAndDrugData()
-    {
-        await Task.Delay(5000);
-        await using var citiesStream = await FileSystem.OpenAppPackageFileAsync("Data/CitiesData.json");
-        using var citiesReader = new StreamReader(citiesStream);
-        var cityText = await citiesReader.ReadToEndAsync();
-        ListOfCities= Cities.FromJson(cityText);
-
-        await using var drugStream = await FileSystem.OpenAppPackageFileAsync("Data/DrugsData.json");
-        using var drugReader = new StreamReader(drugStream);
-        var drugText = await drugReader.ReadToEndAsync();
-        ListOfDrugs = Drugs.FromJson(drugText);
-
-        return true;
-    }
-
-    private async Task SelectionMade(Cities city)
+    private async Task SelectionMade(City city)
     {
         //Navigate to the selected city
         Debug.WriteLine($"Selection {city.Name}");
         await Task.Delay(500);
+
+        var parameters = new NavigationParameters
+        {
+            { "SelectedCity", city },
+        };
+
+        var result = await NavigationService.NavigateAsync(nameof(SelectedCityView), parameters);
+        if (!result.Success)
+        {
+            Debug.WriteLine(result.Exception);
+        }
+    }
+
+    public override void OnNavigatedTo(INavigationParameters parameters)
+    {
+        base.OnNavigatedTo(parameters);
+        Debug.WriteLine(ListOfDrugs);
+        Debug.WriteLine(ListOfCities);
     }
 }

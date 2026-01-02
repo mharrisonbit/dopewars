@@ -21,7 +21,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Grid.Row="1"
-            Text="{Binding CurrentUser.Debit, StringFormat='${0}'}"
+            Text="{Binding CurrentUser.Debit, StringFormat='Debit Amount ${0}'}"
             VerticalTextAlignment="Center" />
         <controls:CustomButton
             Command="{Binding DepositCash}"

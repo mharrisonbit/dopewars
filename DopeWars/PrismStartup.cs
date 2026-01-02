@@ -1,5 +1,6 @@
 ﻿using DopeWars.Interfaces;
 using DopeWars.Models;
+using DopeWars.ViewModels;
 using DopeWars.Views;
 
 namespace DopeWars;
@@ -16,6 +17,9 @@ internal static class PrismStartup
     {
         containerRegistry.RegisterForNavigation<MainPage>()
             .RegisterInstance(SemanticScreenReader.Default);
+
+        containerRegistry.RegisterForNavigation<SelectedCityView, SelectedCityViewModel>();
+
         containerRegistry.RegisterSingleton<IUserData, UserData>();
     }
 }
