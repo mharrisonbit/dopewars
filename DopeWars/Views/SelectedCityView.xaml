@@ -11,6 +11,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Grid RowDefinitions="30,*">
         <Label Grid.Row="0" Text="{Binding Title, StringFormat='you are in {0}'}" />
+
         <CollectionView Grid.Row="1" ItemsSource="{Binding ListOfDrugs}">
             <CollectionView.Header>
                 <Label
@@ -19,12 +20,25 @@
                     Text="Select A drug" />
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Drug">
-                    <components:CustomButton
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SelectedCityViewModel}}, Path=SelectionCommand}"
-                        CommandParameter="{Binding .}"
-                        Grid.Row="0"
-                        Text="Name" />
+                <DataTemplate x:DataType="models:CityDrug">
+                    <Grid
+                        Padding="10"
+                        RowDefinitions="50"
+                        RowSpacing="10">
+                        <Border>
+                            <components:CustomButton
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SelectedCityViewModel}}, Path=SelectionCommand}"
+                                CommandParameter="{Binding .}"
+                                Grid.Row="0">
+                                <components:CustomButton.Text>
+                                    <MultiBinding StringFormat="{}{0} sells here for ${1}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="Price" />
+                                    </MultiBinding>
+                                </components:CustomButton.Text>
+                            </components:CustomButton>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

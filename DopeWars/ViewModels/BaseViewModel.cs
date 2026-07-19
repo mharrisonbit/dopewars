@@ -43,7 +43,9 @@ public class BaseViewModel : BindableBase, INavigationAware
         set => SetProperty(ref field, value);
     }
 
-    public ObservableCollection<Drug> ListOfDrugs
+    public List<Drug> AllDrugs { get; private set; }
+
+    public ObservableCollection<CityDrug> ListOfDrugs
     {
         get;
         set => SetProperty(ref field, value);
@@ -70,7 +72,7 @@ public class BaseViewModel : BindableBase, INavigationAware
 
     protected async Task<bool> LoadCityAndDrugData()
     {
-        await Task.Delay(500); // optional splash delay
+        await Task.Delay(500);
 
         await using var stream =
             await FileSystem.OpenAppPackageFileAsync("Data/GameSetupData.json");
@@ -80,19 +82,24 @@ public class BaseViewModel : BindableBase, INavigationAware
 
         var gameData = JsonConvert.DeserializeObject<GameData>(json);
 
+        if (gameData == null)
+            return false;
 
         var rand = new Random();
 
-/* Observable collections for binding */
+        /* Bindable cities */
         ListOfCities = new ObservableCollection<City>(gameData.Cities);
-        ListOfDrugs  = new ObservableCollection<Drug>(gameData.Drugs);
 
-/* Randomize drug availability per city */
+        /* Global drug definitions */
+        AllDrugs = gameData.Drugs;
+
+        /* Randomize drugs per city */
         foreach (var city in ListOfCities)
         {
-            foreach (var drug in ListOfDrugs)
+            city.AvailableDrugs.Clear();
+
+            foreach (var drug in AllDrugs)
             {
-                // 70% chance a drug exists in the city
                 if (rand.NextDouble() < 0.7)
                 {
                     var price =
@@ -106,8 +113,10 @@ public class BaseViewModel : BindableBase, INavigationAware
                 }
             }
         }
+
         return true;
     }
+
 
     public virtual void OnNavigatedFrom(INavigationParameters parameters)
     {

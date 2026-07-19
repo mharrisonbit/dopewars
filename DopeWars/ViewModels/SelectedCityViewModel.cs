@@ -6,16 +6,16 @@ namespace DopeWars.ViewModels;
 
 public class SelectedCityViewModel : BaseViewModel
 {
-    public DelegateCommand<Drug> SelectionCommand { get; set; }
+    public DelegateCommand<CityDrug> SelectionCommand { get; set; }
 
     public SelectedCityViewModel(IUserData currentUser, ISemanticScreenReader screenReader, INavigationService navigationService, IPageDialogService dialogService) : base(currentUser, screenReader, navigationService, dialogService)
     {
-        SelectionCommand = new DelegateCommand<Drug>(async (x) => await SelectionMade(x));
+        SelectionCommand = new DelegateCommand<CityDrug>(async (x) => await SelectionMade(x));
         Debug.WriteLine("this is the list of drugs " + ListOfDrugs);
     }
 
 
-    private async Task SelectionMade(Drug drugs)
+    private async Task SelectionMade(CityDrug drugs)
     {
         Debug.WriteLine(drugs);
     }
@@ -24,8 +24,6 @@ public class SelectedCityViewModel : BaseViewModel
     {
         base.OnNavigatedTo(parameters);
         Title = parameters.GetValue<City>("SelectedCity").Name;
-        Debug.WriteLine(ListOfDrugs);
-        Debug.WriteLine(ListOfCities);
-
+        ListOfDrugs = parameters.GetValue<City>("SelectedCity").AvailableDrugs;
     }
 }
