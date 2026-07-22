@@ -1,4 +1,6 @@
-﻿namespace DopeWars;
+﻿using CommunityToolkit.Maui;
+
+namespace DopeWars;
 
 public static class MauiProgram
 {
@@ -8,6 +10,7 @@ public static class MauiProgram
 
         builder.UseMauiApp<App>()
             .UsePrism(PrismStartup.Configure)
+            .UseMauiCommunityToolkit()
 
             .ConfigureFonts(fonts =>
             {

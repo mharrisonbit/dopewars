@@ -38,30 +38,32 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF"/>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#FFFFFF" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF"/>
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" />
 
         <!-- Images -->
-        <MauiImage Include="Resources\Images\*"/>
+        <MauiImage Include="Resources\Images\*" />
 
         <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*"/>
+        <MauiFont Include="Resources\Fonts\*" />
         <!-- the Data for the app to run properly-->
-        <MauiAsset Include="Resources\Data\CitiesData.json" LogicalName="Data/CitiesData.json"/>
-  
-        <MauiAsset Include="Resources\Data\DrugsData.json" LogicalName="Data/DrugsData.json"/>
-      <MauiAsset Include="Resources\Data\GameSetupData.json" LogicalName="Data/GameSetupData.json"/>
+        <MauiAsset Include="Resources\Data\CitiesData.json" LogicalName="Data/CitiesData.json" />
+
+        <MauiAsset Include="Resources\Data\DrugsData.json" LogicalName="Data/DrugsData.json" />
+      <MauiAsset Include="Resources\Data\GameSetupData.json" LogicalName="Data/GameSetupData.json" />
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
-      
-      
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+
+
     </ItemGroup>
 
     <ItemGroup>
 <!--        <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.1" />-->
+        <PackageReference Include="CommunityToolkit.Maui" Version="14.2.2" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
         <PackageReference Include="Mopups.Maui" Version="1.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
         <PackageReference Include="Prism.DryIoc.Maui" Version="9.0.537" />
