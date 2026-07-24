@@ -37,7 +37,6 @@ public class MainPageViewModel : BaseViewModel
     public override void OnNavigatedTo(INavigationParameters parameters)
     {
         base.OnNavigatedTo(parameters);
-        Debug.WriteLine(ListOfDrugs);
-        Debug.WriteLine(ListOfCities);
+        LoadCityAndDrugData();
     }
 }

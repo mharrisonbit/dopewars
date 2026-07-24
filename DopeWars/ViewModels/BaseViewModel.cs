@@ -4,7 +4,6 @@ using DopeWars.Models;
 using Mopups.PreBaked.PopupPages.Loader;
 using Mopups.PreBaked.Services;
 using Newtonsoft.Json;
-using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 
 namespace DopeWars.ViewModels;
 
@@ -31,6 +30,8 @@ public class BaseViewModel : BindableBase, INavigationAware
             async (x) => await CurrentUser.MakeWithdraw(x)).ObservesProperty(() => IsBusy);
     }
 
+    public List<Drug> AllDrugs { get; private set; }
+
     public string Title
     {
         get;
@@ -43,13 +44,17 @@ public class BaseViewModel : BindableBase, INavigationAware
         set => SetProperty(ref field, value);
     }
 
-    public List<Drug> AllDrugs { get; private set; }
-
-    public ObservableCollection<CityDrug> ListOfDrugs
+    public ObservableCollection<CityDrug> ListOfDrugsToSell
     {
         get;
         set => SetProperty(ref field, value);
-    }
+    } = new();
+
+    public ObservableCollection<CityDrug> ListOfDrugsToBuy
+    {
+        get;
+        set => SetProperty(ref field, value);
+    } = new();
 
     public bool IsBusy
     {

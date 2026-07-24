@@ -13,7 +13,7 @@
     <Grid Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--  <controls:WalletSummaryView  -->
         <!--  Grid.Row="0"  -->
@@ -28,6 +28,7 @@
             </toolkit:Expander.Header>
             <Grid
                 ColumnDefinitions="*,*"
+                Padding="10,0"
                 RowDefinitions="Auto,Auto,Auto,Auto"
                 RowSpacing="5">
                 <Label
@@ -43,21 +44,24 @@
                     Text="{Binding CurrentUser.Debit, StringFormat='Debit Amount ${0}'}"
                     VerticalTextAlignment="Center" />
                 <controls:CustomButton
+                    BorderColor="Black"
+                    BorderWidth="1"
                     Command="{Binding DepositCash}"
+                    CornerRadius="12"
                     Grid.ColumnSpan="2"
                     Grid.Row="2"
                     Text="Add to savings" />
                 <controls:CustomButton
+                    BorderColor="Black"
+                    BorderWidth="1"
                     Command="{Binding WithdrawCash}"
+                    CornerRadius="12"
                     Grid.ColumnSpan="2"
                     Grid.Row="3"
                     Text="Withdraw" />
             </Grid>
         </toolkit:Expander>
-        <CollectionView
-            Grid.Row="1"
-            ItemsSource="{Binding ListOfCities}"
-            Margin="0,20,20,0">
+        <CollectionView Grid.Row="1" ItemsSource="{Binding ListOfCities}">
             <CollectionView.Header>
                 <Label
                     FontSize="20"
@@ -68,8 +72,11 @@
                 <DataTemplate x:DataType="models:City">
                     <Grid Padding="10" RowDefinitions="50">
                         <controls:CustomButton
+                            BorderColor="Black"
+                            BorderWidth="1"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=SelectionCommand}"
                             CommandParameter="{Binding .}"
+                            CornerRadius="10"
                             Grid.Row="0"
                             Text="{Binding Name}" />
                     </Grid>
