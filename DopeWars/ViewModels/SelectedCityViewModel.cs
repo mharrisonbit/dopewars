@@ -46,6 +46,7 @@ public class SelectedCityViewModel : BaseViewModel
 
         randomSubset.Clear();
 
+        //TODO: need to add a settings page and allow the user to change the number of drugs that can be shown in the lists.
         randomSubset = AllItems
             .OrderBy(_ => Random.Shared.Next())
             .Take(3)

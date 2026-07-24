@@ -72,7 +72,6 @@ public class BaseViewModel : BindableBase, INavigationAware
     {
         List<string> testing = [message];
         return testing;
-
     }
 
     protected async Task<bool> LoadCityAndDrugData()
@@ -92,13 +91,10 @@ public class BaseViewModel : BindableBase, INavigationAware
 
         var rand = new Random();
 
-        /* Bindable cities */
         ListOfCities = new ObservableCollection<City>(gameData.Cities);
 
-        /* Global drug definitions */
         AllDrugs = gameData.Drugs;
 
-        /* Randomize drugs per city */
         foreach (var city in ListOfCities)
         {
             city.AvailableDrugs.Clear();
