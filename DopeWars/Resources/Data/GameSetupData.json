@@ -11,6 +11,18 @@
     {
       "id": 3,
       "name": "Bowling Green"
+    },
+    {
+      "id": 4,
+      "name": "Richmond"
+    },
+    {
+      "id": 5,
+      "name": "Ashland"
+    },
+    {
+      "id": 6,
+      "name": "Pikeville"
     }
   ],
   "Drugs": [
@@ -44,6 +56,38 @@
         30,
         40,
         50
+      ]
+    },
+    {
+      "name": "Heroin",
+      "priceRange": [
+        300,
+        400,
+        500
+      ]
+    },
+    {
+      "name": "Oxycotin",
+      "priceRange": [
+        30,
+        40,
+        50
+      ]
+    },
+    {
+      "name": "Fentanyl",
+      "priceRange": [
+        100,
+        300,
+        500
+      ]
+    },
+    {
+      "name": "Bath Salts",
+      "priceRange": [
+        10,
+        30,
+        100
       ]
     }
   ]

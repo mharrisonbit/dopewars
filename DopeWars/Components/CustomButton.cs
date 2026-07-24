@@ -2,19 +2,31 @@ namespace DopeWars.Components;
 
 public class CustomButton : Button
 {
-    // Example: add a custom property
-    public static readonly BindableProperty CornerRadiusProperty =
-        BindableProperty.Create(
-            nameof(CornerRadius),
-            typeof(int),
-            typeof(CustomButton),
-            0);
+    private const double PressedScale = 0.90;
+    private const uint PressDuration = 250;
+    private const uint ReleaseDuration = 350;
 
-    public int CornerRadius
+    public CustomButton()
     {
-        get => (int)GetValue(CornerRadiusProperty);
-        set => SetValue(CornerRadiusProperty, value);
+        Pressed += OnPressed;
+        Released += OnReleased;
     }
 
-    // You can override other behavior if necessary
+    private void OnPressed(object? sender, EventArgs e)
+    {
+        this.AbortAnimation(nameof(CustomButton));
+
+        _ = this.ScaleToAsync(
+            PressedScale,
+            PressDuration,
+            Easing.CubicOut);
+    }
+
+    private void OnReleased(object? sender, EventArgs e)
+    {
+        _ = this.ScaleToAsync(
+            1.0,
+            ReleaseDuration,
+            Easing.SpringOut);
+    }
 }
